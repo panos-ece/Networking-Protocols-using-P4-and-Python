@@ -1,0 +1,28 @@
+{
+    "hosts": {
+        "h1": {"ip": "10.0.1.2/24", "mac": "00:00:00:00:01:02",
+               "commands":["route add default gw 10.0.1.1 dev eth0"]},
+
+        "h2": {"ip": "10.0.1.3/24", "mac": "00:00:00:00:01:03",
+               "commands":["route add default gw 10.0.1.1 dev eth0"]},
+
+        "h3": {"ip": "10.0.2.2/24", "mac": "00:00:00:00:02:02",
+               "commands":["route add default gw 10.0.2.1 dev eth0"]},
+
+        "h4": {"ip": "10.0.2.3/24", "mac": "00:00:00:00:02:03",
+               "commands":["route add default gw 10.0.2.1 dev eth0"]},
+        "h5": {"ip": "200.0.0.2/24", "mac": "00:00:00:00:04:02",
+        "commands":["route add default gw 200.0.0.1 dev eth0"]}
+    },
+    "switches": {
+        "s1": {"program": "./build/switch.json"},
+        "s2": {"program": "./build/switch.json"},
+        "s3": {},
+        "s4": {}
+    },
+    "links": [
+        ["h1", "s1-p2"],["h2", "s1-p3"], ["s1-p1", "s3-p2"], ["s3-p1", "s4-p1"],
+        ["s4-p2", "s2-p1"], ["h3", "s2-p2"], ["h4", "s2-p3"], ["s3-p3", "h5"]
+    ]
+}
+
